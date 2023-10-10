@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-
+// Order schema make
 const order_Schema = new mongoose.Schema(
     {
-        order_status :{
+        delivery_address :{
             type:String,
             trim:true
         },
@@ -28,6 +28,7 @@ const order_Schema = new mongoose.Schema(
         versionKey: false
     }
 );
-
+// Order model creating
 const order = mongoose.model("Order",order_Schema)
+// Exporting order model
 module.exports = order;
