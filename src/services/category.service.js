@@ -1,57 +1,29 @@
 const { Category } = require("../models");
-
-/**
- * Create category
- * @param {object} reqbody
- * @returns {Promise<Category>}
- */
+// Create category service
 const create_category = async (reqbody) => {
   return Category.create(reqbody);
 };
-
-/**
- * Get category list
- * @returns {Promise<Category>}
- */
+// Get category list service
 const get_category_list = async () => {
     return Category.find();
 };
-
-/**
- * Get category by name
- * @param {object} category_name
- * @returns {Promise<Category>}
- */
+// Get categiry by name service
 const get_category_by_name = async(category_name)=>{
   return Category.findOne({category_name})
 }
-
-/**
- * Get Category by id
- * @param {object} category_id
- * @returns {Promise<Category>}
- */
-const   get_category_by_id = async(category_id) => {
+// Get category by id service
+const get_category_by_id = async(category_id) => {
   return Category.findById(category_id);
 }
-
-/**
-* Delete Category by id
-* @param {object} category_id
-* @returns {Promise<Category>}
-*/
+// Delete category service
 const delete_category = async(category_id) => {
   return Category.findByIdAndDelete(category_id);
 }
-/**
-* Delete Category by id
-* @param {object} category_id
-* @returns {Promise<Category>}
-*/
+// Update category service
 const update_category = async(category_id,reqbody) => {
   return Category.findByIdAndUpdate(category_id,{$set:reqbody});
 }
-
+// Service object export
 module.exports = {
     create_category,
     get_category_list,
