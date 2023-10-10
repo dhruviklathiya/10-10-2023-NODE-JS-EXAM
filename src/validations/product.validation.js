@@ -1,5 +1,5 @@
 const Joi = require("joi");
-
+// Create product validation
 const create_product = {
     body: Joi.object().keys({
         product_name: Joi.string().required().trim(),
@@ -8,7 +8,7 @@ const create_product = {
         category: Joi.string().required()
     })
 }
-
+// Exporting product validation object
 module.exports = {
     create_product
 }
