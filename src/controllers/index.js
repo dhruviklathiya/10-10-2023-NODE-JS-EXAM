@@ -1,0 +1,5 @@
+module.exports.user_Controller = require("./user.controller")
+module.exports.product_Controller = require("./product.controller")
+module.exports.category_Controller = require("./category.controller")
+module.exports.cart_Controller = require("./cart.controller")
+module.exports.order_Controller = require("./order.controller")
