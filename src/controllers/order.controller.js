@@ -70,7 +70,7 @@ const update_order = async(req,res) => {
         const updated = await order_Service.update_order(req.params.orderId,req.body);
         if(!updated){
             throw new Error("Something went wrong");
-        }
+        }   
         res.status(200).json({
             success:true,
             message:"Order updated successfully ^-^ ",
