@@ -30,5 +30,5 @@ module.exports = {
     get_order_list,
     get_order_by_id,
     update_order,
-    delete_order
+    delete_order,
 }

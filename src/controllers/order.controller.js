@@ -21,22 +21,26 @@ const create_order = async(req,res) => {
         if(!order){
             throw new Error("Something went wrong -!-");
         }
-        // Code for simple mail sending of confirmation
+// Code for simple mail sending of confirmation
         // await email_Service.send_mail(user_exist.email,`Your order from ${user_exist.email} email is placed successfully and will dispatch soon, thank you for your time.`,"Order confirmation");
 
-        // Code for ejs mail sending of confirmation
-        await ejs.renderFile(
-            path.join(__dirname, "../views/order_mail.ejs"),
-            {
+// Code for ejs mail sending of confirmation
+    // Here we have taken object for passing dynamic data intp our ejs template
+    // We can either pass whole object as a parameter or just name of our object
+        const ejs_data = {
               email: user_exist.email,
-              otp: ("0".repeat(4) + Math.floor(Math.random() * 10 ** 4)).slice(-4),
               first_name: user_exist.first_name,
               last_name: user_exist.last_name,
-            },async (err, data) => {
+            }
+    // Following block of code presents rendering of ejs template
+            await ejs.renderFile(
+            path.join(__dirname, "../views/order_mail.ejs"),
+            ejs_data,
+            async (err, data) => {
                 if (err) {
-                  let userCreated = await user_Service.get_user_by_email(user_exist.email);
-                  if (userCreated) {
-                    await user_Service.delete_user(user_exist.email);
+                  let order_created = await order_Service.get_order_by_user(reqbody.user);
+                  if (order_created) {
+                    await order_Service.delete_order(order_created._id.toString());
                   }
                   throw new Error("Something went wrong, please try again.");
                 } else {
